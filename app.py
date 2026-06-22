@@ -70,7 +70,7 @@ st.title("📋 Plateforme de Contrôle Réglementaire & Conformité")
 st.write("Scannez le code QR pour accéder directement aux documents et planning de l'établissement.")
 
 # --- CRÉATION DES ONGLETS ---
-onglet1, onglet2, onglet3 = st.tabs(["📂 Gestion des Rapports", "📅 Maîtrise & Planification", "📱 Générateur QR Code"])
+onglet1, onglet2= st.tabs(["📂 Gestion des Rapports", "📅 Maîtrise & Planification"])
 
 # ==========================================
 # PARTIE 1 : GESTION DES RAPPORTS
@@ -166,24 +166,7 @@ with onglet2:
     else:
         st.info("Aucune planification enregistrée.")
 
-# ==========================================
-# PARTIE 3 : GÉNÉRATEUR DE CODE QR
-# ==========================================
-with onglet3:
-    st.header("Générer le Code QR d'accès")
-    st.write("Entrez l'URL finale de votre application une fois déployée pour générer le code QR à coller sur vos machines.")
-    
-    url_app = st.text_input("URL de la plateforme :", value="https://share.streamlit.io/votre-compte/votre-app")
-    
-    if st.button("Générer le Code QR"):
-        qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(url_app)
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
-        
-        buf = BytesIO()
-        img.save(buf, format="PNG")
-        byte_im = buf.getvalue()
+
         
         st.image(byte_im, caption="Code QR prêt à être scanné", width=250)
         st.download_button(label="💾 Télécharger l'image du QR Code", data=byte_im, file_name="qr_code_plateforme.png", mime="image/png")
