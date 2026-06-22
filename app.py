@@ -167,6 +167,3 @@ with onglet2:
         st.info("Aucune planification enregistrée.")
 
 
-        
-        st.image(byte_im, caption="Code QR prêt à être scanné", width=250)
-        st.download_button(label="💾 Télécharger l'image du QR Code", data=byte_im, file_name="qr_code_plateforme.png", mime="image/png")
